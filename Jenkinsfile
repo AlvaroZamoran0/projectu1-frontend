@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    tools{
+            nodejs 'NODEJS_21_7_3'
+        }
     stages{
         stage('create build'){
             steps{
