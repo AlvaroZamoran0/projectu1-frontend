@@ -3,7 +3,7 @@ pipeline {
     stages{
         stage('create build'){
             steps{
-                checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/AlvaroZamoran0/projectu1-frontend']])
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/AlvaroZamoran0/projectu1-frontend']])
                 bat 'npm run build'
             }
         }
