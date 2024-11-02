@@ -1,12 +1,24 @@
 pipeline {
     agent any
     tools{
-            nodejs 'NODEJS_21_7_3'
-        }
+        nodejs 'NODEJS_21_7_3'
+    }
     stages{
-        stage('create build'){
+
+        stage('Checkout'){
             steps{
-                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/AlvaroZamoran0/projectu1-frontend']])
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/AlvaroZamoran0/projectu1-frontend.git']])
+            }
+        }
+
+        stage('Install dependencies'){
+            steps{
+                bat 'npm install'
+            }
+        }
+
+        stage('Build frontend'){
+            steps{
                 bat 'npm run build'
             }
         }
@@ -14,7 +26,7 @@ pipeline {
         stage('Build docker image'){
             steps{
                 script{
-                    bat 'docker build -t 4lvaroz/projectu1-frontend:latest .'
+                    bat 'docker build -t 4lvaroz/projectu1-frontend . --no-cache'
                 }
             }
         }
@@ -29,4 +41,3 @@ pipeline {
             }
         }
     }
-}
