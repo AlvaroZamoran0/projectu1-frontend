@@ -15,7 +15,7 @@ const Status = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const n_doc = JSON.parse(localStorage.getItem("Identification"));
+    const n_doc = localStorage.getItem("Identification");
     // Carga las solicitudes del cliente
     creditService
       .get_status(n_doc)

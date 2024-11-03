@@ -42,7 +42,7 @@ const CreditForm = () => {
 
     setErrorMessage("");
 
-    const document = JSON.parse(localStorage.getItem("Identification"));
+    const document = localStorage.getItem("Identification");
 
     const credit = {
       doc: document,

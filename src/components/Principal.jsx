@@ -20,7 +20,7 @@ const Principal = () => {
   useEffect(() => {
     // Verificar el permiso del usuario
     const permiso = JSON.parse(localStorage.getItem("Permiso"));
-    const n_doc = JSON.parse(localStorage.getItem("Identification"));
+    const n_doc = localStorage.getItem("Identification");
     setIsAdmin(permiso === 2);
 
     // Solo cargar la lista de créditos si el usuario es administrador
