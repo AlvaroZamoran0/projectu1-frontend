@@ -1,6 +1,20 @@
 version: "3.8"
 
 services:
+  # MySQL Database
+  db:
+    image: mysql:latest
+    container_name: db
+    environment:
+      - MYSQL_ROOT_PASSWORD=Pepa11032004
+      - MYSQL_DATABASE=tingeso1
+      - MYSQL_USER=alvaro
+      - MYSQL_PASSWORD=Pepa11032004
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - backend-network
+      
   # Frontend services
   frontend1:
     image: 4lvaroz/projectu1-frontend:latest
@@ -78,20 +92,6 @@ services:
       - backend1
       - backend2
       - backend3
-    networks:
-      - backend-network
-
-  # MySQL Database
-  db:
-    image: mysql:latest
-    container_name: db
-    environment:
-      - MYSQL_ROOT_PASSWORD=Pepa11032004
-      - MYSQL_DATABASE=tingeso1
-      - MYSQL_USER=alvaro
-      - MYSQL_PASSWORD=Pepa11032004
-    volumes:
-      - mysql_data:/var/lib/mysql
     networks:
       - backend-network
 
