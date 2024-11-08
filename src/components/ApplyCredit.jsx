@@ -112,6 +112,7 @@ const CreditForm = () => {
       >
         <MenuItem value={0}>Freelance</MenuItem>
         <MenuItem value={1}>Contrato</MenuItem>
+        <MenuItem value={1}>Contrato indefinido</MenuItem>
       </TextField>
       <TextField
         name="salary"
