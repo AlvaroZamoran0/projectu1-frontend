@@ -31,6 +31,7 @@ const RevisionCredit = () => {
   const [age, setUserAge] = useState(null);
   const [checkboxValue, setCheckboxValue] = useState(false); // Estado para la casilla de verificación
   const [checkedItems, setCheckedItems] = useState([false, false, false, false, false]);
+  const [isConfirmed, setIsConfirmed] = useState(false);
   const [evaluationResult, setEvaluationResult] = useState(null);
   const [totalCost, setTotalCost] = useState(null);
 
@@ -147,12 +148,18 @@ const RevisionCredit = () => {
   };
 
   const handleCheckboxChange = (index) => {
-    const newCheckedItems = [...checkedItems];
-    newCheckedItems[index] = !newCheckedItems[index]; // Alternar el valor de la casilla
-    setCheckedItems(newCheckedItems);
+    // Solo permite cambiar el estado de la casilla si no está confirmada
+    if (!isConfirmed) {
+      setCheckedItems((prevCheckedItems) => {
+        const updatedCheckedItems = [...prevCheckedItems];
+        updatedCheckedItems[index] = !updatedCheckedItems[index];
+        return updatedCheckedItems;
+      });
+    }
   };
 
   const calculateCheckedSum = () => {
+    setIsConfirmed(true); // Bloquea las casillas de verificación
     const sum = checkedItems.filter(Boolean).length; // Contar los true
     console.log('Suma de casillas marcadas:', sum);
     creditService.step_7(sum)
